@@ -46,11 +46,11 @@ $formularioAlumno.addEventListener("submit", async function(e){
             body: formData
         });
 
-        const aluData = await aluResp.text();
+        const aluData = await aluResp.json();
 
         console.log(aluData);
 
-        document.getElementById("resultado").innerText = aluData;
+        document.getElementById("resultado").innerText = aluData.message;
 
         $formularioAlumno.reset();
         
