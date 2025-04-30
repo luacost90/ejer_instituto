@@ -48,7 +48,7 @@ $formularioAlumno.addEventListener("submit", async function(e){
 
         const aluData = await aluResp.json();
 
-        console.log(aluData);
+        console.log(aluData.message);
 
         document.getElementById("resultado").innerText = aluData.message;
 
