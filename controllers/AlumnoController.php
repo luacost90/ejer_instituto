@@ -40,6 +40,15 @@
             }
             
         }
+
+        public function listar(){
+            header("Content-Type: application/json");
+
+            $alumno = new Alumno();
+            $lista = $alumno->listarAlumnos();
+
+            echo json_encode($lista);
+        }
     }
 
 ?>
