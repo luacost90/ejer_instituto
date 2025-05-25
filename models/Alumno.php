@@ -14,7 +14,6 @@
         }
 
         public function guardarAlumno(){
-
             try {
                 $sql = "INSERT INTO alumnos (nombre, id_representante) VALUES (:nombre, :id_representante)";
                 $statement = $this->conn->prepare($sql);
@@ -25,7 +24,6 @@
                 echo "Error al guardar alumno: " . $e->getMessage();
                 return false;
             }
-
         }
     }
 
