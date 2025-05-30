@@ -49,6 +49,61 @@
 
             echo json_encode($lista);
         }
+
+        public function eliminar(){
+            $data = json_decode(file_get_contents('php://input'), true);
+            $id = isset($data['id']) ? (int)$data['id'] : null;
+
+            if(!$id){
+                echo json_encode(["success" => false, "error" => "ID no proporcionado"]);
+                return;
+            }
+
+            $alumnoModel = new Alumno();
+            if($alumnoModel->eliminarAlumno($id)){
+                echo json_encode(["success" => true]);
+            }else{
+                echo json_encode(["success" => false, "error" => "No se pudo eliminar"]);
+            }
+        }
+
+        public function editar(){
+            $id = $_POST['id'] ?? null;
+            $nombre = $_POST['nombre'] ?? null;
+
+            if (!$id || !$nombre) {
+                // echo json_encode(["success" => false, "error" => "Datos incompletos"]);
+                echo json_encode(["error" => "Datos no proporcionados"]);
+                return;
+            }
+
+            $alumnoModel = new Alumno();
+            $alumnoModel->actualizarAlumno($id,$nombre);
+
+            echo json_encode(["success" => true, "message" => "Se ha actualizado exitosamente"]);
+            exit;
+        }
+
+        public function verEditar(){
+            
+            $id = isset($_GET['id']) ? (int)$_GET['id'] : null;
+
+            if(!$id){
+                 echo json_encode(["success" => false, "error" => "id No proporcionado"]);
+                return;
+            }
+
+            $alumnoModel = new Alumno();
+            $alumno = $alumnoModel->obtenerAlumnoPorId($id);
+
+            if(!$alumno){
+                echo json_encode(["success" => false, "error" => "Alumno no encontrado"]);
+                return;
+            }
+
+            echo json_encode($alumno);
+
+        }
     }
 
 ?>

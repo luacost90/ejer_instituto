@@ -15,3 +15,9 @@ CREATE TABLE alumnos(
     id_representante INT,
     FOREIGN KEY (id_representante) REFERENCES representantes(id) ON UPDATE CASCADE ON DELETE CASCADE
 )
+
+CREATE TABLE usuarios(
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50),
+    password VARCHAR(255)
+);

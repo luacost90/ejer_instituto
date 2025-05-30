@@ -8,7 +8,7 @@ $formularioAlumno.addEventListener("submit", async function(e){
 
     try {
          // Se regsitra el representante cuando no exista en la Base de datos
-         const regRepre = await fetch("core/router.php?action=registrar",{
+         const regRepre = await fetch("../core/router.php?action=registrar",{
             method: "POST",
             body: formData
         });

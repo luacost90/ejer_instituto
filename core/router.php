@@ -1,5 +1,6 @@
 <?php
 require_once '../controllers/AlumnoController.php';
+require_once '../controllers/AuthController.php';
 
 $path = $_GET['action'] ?? '';
 
@@ -17,6 +18,21 @@ switch($path){
         (new AlumnoController())->listar();
         break;
 
+    case 'editar':
+        (new AlumnoController())->editar();
+        break;
+
+    case 'editar':
+        (new AlumnoController())->verEditar();
+        break;
+
+    case 'eliminar':
+        (new AlumnoController())->eliminar();
+        break;
+
+    case 'login':
+        (new AuthController())->login();
+        break;
     default:
         http_response_code(404);
 }
