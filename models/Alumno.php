@@ -2,8 +2,14 @@
     require_once '../database/Database.php';
 
     class Alumno{
+        public $cedula;
         public $nombre;
-        public $id_representante;
+        public $apellido;
+        public $fecha_nacimiento;
+        public $edad;
+        public $sexo;
+        public $fk_representante;
+        public $fk_plantel;
         
         
         private $conn;
@@ -15,10 +21,10 @@
 
         public function obtenerAlumnoPorId($id){
             try {
-                $sql = "SELECT a.id, a.nombre, r.nombre AS nombre_representante, r.cedula 
-                        FROM alumnos a 
-                        JOIN representantes r ON a.id_representante = r.id 
-                        WHERE a.id = :id";
+                $sql = "SELECT e.id_estudiante, e.nombre, r.nombre AS nombre_representante, r.cedula 
+                        FROM estudiante e 
+                        JOIN representante r ON e.fk_representante = r.id_representante 
+                        WHERE e.id_estudiante = :id";
                 $statement = $this->conn->prepare($sql);
                 $statement->bindParam(':id', $id, PDO::PARAM_INT);
                 $statement->execute();
@@ -31,7 +37,7 @@
         public function listarAlumnos(){
             try {
                 
-                $sql = "SELECT a.id, a.nombre, r.nombre AS nombre_representante, r.cedula FROM alumnos a JOIN representantes r ON a.id_representante = r.id";
+                $sql = "SELECT e.id_estudiante, e.nombre, r.nombre AS nombre_representante, r.cedula FROM estudiante e JOIN representante r ON e.fk_representante = r.id_representante";
 
                 $statement = $this->conn->prepare($sql);
                 $statement->execute();
@@ -45,10 +51,16 @@
 
         public function guardarAlumno(){
             try {
-                $sql = "INSERT INTO alumnos (nombre, id_representante) VALUES (:nombre, :id_representante)";
+                $sql = "INSERT INTO alumnos (cedula, nombre, apellido, fecha_nacimiento, edad, sexo, fk_representante, fk_plantel) VALUES (:cedula, :nombre, :apellido, :fecha_nacimiento, :edad, :sexo, :fk_representante  :fk_plantel";
                 $statement = $this->conn->prepare($sql);
+                $statement->bindParam(':cedula', $this->cedula);
                 $statement->bindParam(':nombre', $this->nombre);
-                $statement->bindParam(':id_representante', $this->id_representante);
+                $statement->bindParam(':apellido', $this->apellido);
+                $statement->bindParam(':fecha_nacimiento', $this->fecha_nacimiento);
+                $statement->bindParam(':edad', $this->edad);
+                $statement->bindParam(':sexo', $this->sexo);
+                $statement->bindParam(':fk_representante', $this->fk_representante);
+                $statement->bindParam(':fk_plantel', $this->fk_plantel);
                 return $statement->execute();
             } catch (PDOException $e) {
                 echo "Error al guardar alumno: " . $e->getMessage();
@@ -59,7 +71,7 @@
         public function eliminarAlumno($id){
 
             try {
-                $sql = "DELETE FROM alumnos WHERE id = :id";
+                $sql = "DELETE FROM estudiante WHERE id_estudiante = :id";
                 $statement = $this->conn->prepare($sql);
                 $statement->bindParam(':id', $id);
 
@@ -72,10 +84,10 @@
 
         public function actualizarAlumno($id, $nombre){
             try {
-                $sql = "UPDATE alumnos SET nombre = :nombre Where id = :id";
+                $sql = "UPDATE estudiante SET nombre = :nombre Where id_estudiante = :id_estudiante";
                 $statement = $this->conn->prepare($sql);
                 $statement->bindParam(':nombre', $nombre);
-                $statement->bindParam(':id', $id);
+                $statement->bindParam(':id_estudiante', $id);
 
                 return $statement->execute();
 

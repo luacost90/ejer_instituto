@@ -7,9 +7,26 @@
         public function registrar(){
             header('Content-Type: application/json');
 
-            $nombreRep =$_POST['nombre_representante'] ?? null;
+            // Representante
             $cedulaRep =$_POST['cedula_representante'] ?? null;
+            $nombreRep =$_POST['nombre_representante'] ?? null;
+            $apellidoRep =$_POST['apellido_representante'] ?? null;
+            $telefonoRep =$_POST['telefono_representante'] ?? null;
+            
+            //Alumno
+            $cedulaAlumno = $_POST['cedula_alumno'] ?? null;
             $nombreAlumno = $_POST['nombre_alumno'] ?? null;
+            $apellidoAlumno = $_POST['apellido_alumno'] ?? null;
+            $fechaNacimientoAlumno = $_POST['fecha_nacimiento'] ?? null;
+            $sexoAlumno = $_POST['sexo'] ?? null;
+            $idPlantelAlumno = $_POST['fk_plantel'] ?? null;
+
+            $edadAlumno = null;
+            if ($fechaNacimientoAlumno) {
+                $anioNacimiento = date('Y', strtotime($fechaNacimientoAlumno));
+                $anioActual = date('Y');
+                $edadAlumno = $anioActual - $anioNacimiento;
+            }
 
             if(!$nombreRep || !$cedulaRep || !$nombreAlumno){
                 echo json_encode(["success" => false, "error" => "faltan datos"]);
@@ -17,8 +34,10 @@
             }
 
             $representante =  new Representante();
-            $representante->nombre = $nombreRep;
             $representante->cedula = $cedulaRep;
+            $representante->nombre = $nombreRep;
+            $representante->apellido = $apellidoRep;
+            $representante->telefono = $telefonoRep;
 
 
             $result = $representante->buscarRepresentante($cedulaRep);
@@ -30,8 +49,14 @@
             }
 
             $alumno = new Alumno();
+            $alumno->cedula = $cedulaAlumno;
             $alumno->nombre = $nombreAlumno;
-            $alumno->id_representante = $idRepresentante;
+            $alumno->apellido = $apellidoAlumno;
+            $alumno->fecha_nacimiento = $fechaNacimientoAlumno;
+            $alumno->edad = $edadAlumno;
+            $alumno->sexo = $sexoAlumno;
+            $alumno->fk_representante = $idRepresentante;
+            $alumno->fk_plantel = $idPlantel;
 
             if($alumno->guardarAlumno()){
                 echo json_encode(["success"=> true, "message" => "Alumno registrado"]);

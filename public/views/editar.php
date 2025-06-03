@@ -13,5 +13,5 @@
 
     <button type="submit" class="btn-actualizar" data-id="<?=$id?>">Actualizar</button>
 </form>
-<p><a href="/alumnos">← Volver al listado</a></p>
+<p><a href="./dashboard.php">← Volver al listado</a></p>
 <script src="js/actualizar.js"></script>

@@ -4,6 +4,8 @@
     class Representante{
         public $cedula;
         public $nombre;
+        public $apellido;
+        public $telefono;
 
         private $conn;
 
@@ -31,11 +33,13 @@
 
         public function registrarRepresentante(){
             try {
-                $sql = "INSERT INTO representantes (cedula, nombre) VALUES (:cedula, :nombre)";
+                $sql = "INSERT INTO representante (cedula, nombre, apellido, telefono) VALUES (:cedula, :nombre, :apellido, :telefono)";
 
                 $statement = $this->conn->prepare($sql);
                 $statement->bindParam(':cedula', $this->cedula);
                 $statement->bindParam(':nombre', $this->nombre);
+                $statement->bindParam(':apellido', $this->apellido);
+                $statement->bindParam(':telefono', $this->telefono);
                 $statement->execute();
 
 

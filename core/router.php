@@ -1,5 +1,6 @@
 <?php
 require_once '../controllers/AlumnoController.php';
+require_once '../controllers/PlantelController.php';
 require_once '../controllers/AuthController.php';
 
 $path = $_GET['action'] ?? '';
@@ -26,8 +27,20 @@ switch($path){
         (new AlumnoController())->verEditar();
         break;
 
+    case 'editar':
+        (new AlumnoController())->verDetalles();
+        break;
+
     case 'eliminar':
         (new AlumnoController())->eliminar();
+        break;
+
+    case 'registrarPlantel':
+        (new PlantelController())->registrarPlantel();
+        break;
+
+    case 'obtenerTodosPlanteles':
+        (new PlantelController())->obtenerTodos();
         break;
 
     case 'login':

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const res = await fetch("../core/router.php?action=listar");
     const data = await res.json();
-
+    console.log(data);
     const tbody = document.querySelector("#tablaAlumnos tbody");
     tbody.innerHTML = "";
 
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <td>${alumno.nombre_representante}</td>
                 <td>${alumno.cedula}</td>
                 <td>
+                <button class="btn-detalles" data-id=${alumno.id}><a href="dashboard.php?view=verDetalles&id=${alumno.id}">Ver detalles</a></button>
                 <button class="btn-editar" data-id=${alumno.id}>Editar</button>
                 <button class="btn-eliminar" data-id=${alumno.id}>Eliminar</button>
                 </td>

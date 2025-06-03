@@ -25,25 +25,39 @@ $formularioAlumno.addEventListener("submit", async function(e){
         }else{
             throw new Error("Error al registrar el representante.");
         }
-
-        // formData.append("id_representante", id_representante);
-
-        // const aluResp = await fetch("php/registrar_alumno.php",{
-        //     method: "POST",
-        //     body: formData
-        // });
-
-        // const aluData = await aluResp.json();
-
-        // console.log(aluData.message);
-
-        // document.getElementById("resultado").innerText = aluData.message;
-
-        // $formularioAlumno.reset();
         
     } catch (err) {
         console.error(err);
         document.getElementById("resultado").innerText = "Error inesperado";
     }
-
 })
+
+async function cargarOpcionesPlanteles() {
+    try {
+        const response = await fetch("../core/router.php?action=obtenerTodosPlanteles");
+        const data = await response.json();
+
+        console.log(data);
+        const selectPlanteles = document.getElementById("opciones-planteles");
+        selectPlanteles.innerHTML = ""; // Limpiar opciones previas
+
+        if (data.success && Array.isArray(data.data)) {
+            data.data.forEach(plantel => {
+                const option = document.createElement("option");
+                option.value = plantel.id;
+                option.textContent = plantel.eponimo;
+                selectPlanteles.appendChild(option);
+            });
+        } else {
+            const option = document.createElement("option");
+            option.value = "";
+            option.textContent = "No hay planteles disponibles";
+            selectPlanteles.appendChild(option);
+        }
+    } catch (error) {
+        console.error("Error al cargar planteles:", error);
+    }
+}
+
+// Llamar la función al cargar la página
+document.addEventListener("DOMContentLoaded", cargarOpcionesPlanteles);

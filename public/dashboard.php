@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     if (!isset($_SESSION['usuario'])) {
         header('Location: ../index.php');
         exit;
@@ -24,8 +23,9 @@
         <h2>Admin</h2>
         <nav>
             <ul>
-                <li><a href="dashboard.php?view=registrar">Registrar</a></li>
+                <li><a href="dashboard.php?view=registrar">Registrar Alumno</a></li>
                 <li><a href="dashboard.php?view=listar">Listar Alumnos</a></li>
+                <li><a href="dashboard.php?view=registrarPlantel">Registrar Plantel</a></li>
                 <li><a href="logout.php">Cerrar sesión</a></li>
             </ul>
         </nav>
