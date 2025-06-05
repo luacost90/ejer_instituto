@@ -13,18 +13,18 @@ $formularioAlumno.addEventListener("submit", async function(e){
             body: formData
         });
 
-        const reprenData =  await regRepre.json();
+        const reprenData =  await regRepre.text();
         console.log(reprenData);
 
-        if(reprenData.success){
-             console.log(reprenData.message);
+        // if(reprenData.success){
+        //      console.log(reprenData.message);
 
-            document.getElementById("resultado").innerText = reprenData.message;
+        //     document.getElementById("resultado").innerText = reprenData.message;
 
-            $formularioAlumno.reset();
-        }else{
-            throw new Error("Error al registrar el representante.");
-        }
+        //     $formularioAlumno.reset();
+        // }else{
+        //     throw new Error("Error al registrar el representante.");
+        // }
         
     } catch (err) {
         console.error(err);
@@ -37,14 +37,13 @@ async function cargarOpcionesPlanteles() {
         const response = await fetch("../core/router.php?action=obtenerTodosPlanteles");
         const data = await response.json();
 
-        console.log(data);
         const selectPlanteles = document.getElementById("opciones-planteles");
         selectPlanteles.innerHTML = ""; // Limpiar opciones previas
 
         if (data.success && Array.isArray(data.data)) {
             data.data.forEach(plantel => {
                 const option = document.createElement("option");
-                option.value = plantel.id;
+                option.value = plantel.id_plantel;
                 option.textContent = plantel.eponimo;
                 selectPlanteles.appendChild(option);
             });

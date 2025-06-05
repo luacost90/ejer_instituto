@@ -11,7 +11,7 @@
             body: formData
         })
         
-    const dataAlumno = await actAlumno.json();
+    const dataAlumno = await actAlumno.text();
     console.log(dataAlumno);
 
  });

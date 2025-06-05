@@ -9,14 +9,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     data.forEach(alumno => {
         const row = `  
             <tr>
-                <td>${alumno.id}</td>
+                <td>${alumno.id_estudiante}</td>
                 <td>${alumno.nombre}</td>
-                <td>${alumno.nombre_representante}</td>
                 <td>${alumno.cedula}</td>
+                <td>${alumno.nombre_representante}</td>
                 <td>
-                <button class="btn-detalles" data-id=${alumno.id}><a href="dashboard.php?view=verDetalles&id=${alumno.id}">Ver detalles</a></button>
-                <button class="btn-editar" data-id=${alumno.id}>Editar</button>
-                <button class="btn-eliminar" data-id=${alumno.id}>Eliminar</button>
+                <button class="btn-detalles" data-id=${alumno.id_estudiante}><a href="dashboard.php?view=verDetalles&id=${alumno.id_estudiante}">Ver detalles</a></button>
+                <button class="btn-editar" data-id=${alumno.id_estudiante}>Editar</button>
+                <button class="btn-eliminar cancel-btn" data-id=${alumno.id_estudiante}>Eliminar</button>
                 </td>
             </tr>
         `;

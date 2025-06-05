@@ -5,13 +5,11 @@
         public $eponimo;
         public $codigo_dea;
         public $nombre;
+        public $apellido;
         public $cedula;
         public $telefono;
-        public $seccion;
         public $tipo_matricula;
-        public $grado;
 
-             
         private $conn;
 
         public function __construct(){
@@ -21,16 +19,15 @@
 
         public function guardarPlantel(){
              try {
-                $sql = "INSERT INTO plantel (eponimo, codigo_dea, nombre, cedula, telefono, seccion, tipo_matricula, grado) VALUES (:eponimo, :codigo_dea, :nombre, :cedula, :telefono, :seccion, :tipo_matricula, :grado)";
+                $sql = "INSERT INTO plantel (eponimo, codigo_dea, nombre, apellido, cedula, telefono, tipo_matricula) VALUES (:eponimo, :codigo_dea, :nombre, :apellido, :cedula, :telefono, :tipo_matricula)";
                 $statement = $this->conn->prepare($sql);
                 $statement->bindParam(':eponimo', $this->eponimo);
                 $statement->bindParam(':codigo_dea', $this->codigo_dea);
                 $statement->bindParam(':nombre', $this->nombre);
+                $statement->bindParam(':apellido', $this->apellido);
                 $statement->bindParam(':cedula', $this->cedula);
                 $statement->bindParam(':telefono', $this->telefono);
-                $statement->bindParam(':seccion', $this->seccion);
                 $statement->bindParam(':tipo_matricula', $this->tipo_matricula);
-                $statement->bindParam(':grado', $this->grado);
                 return $statement->execute();
             } catch (PDOException $e) {
                 echo "Error al guardar alumno: " . $e->getMessage();
