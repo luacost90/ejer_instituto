@@ -20,7 +20,10 @@
 <body>
 <div class="dashboard">
     <aside class="sidebar">
-        <h2>Admin</h2>
+        <div class="logo-container">
+            <img src="img/LOGO.jpg" alt="Logo" class="logo" style="max-width: 120px; display: block; margin: 0 auto 20px;">
+        </div>
+        <h2>Panel de administración</h2>
         <nav>
             <ul>
                 <li><a href="dashboard.php?view=registrar">Registrar Alumno</a></li>

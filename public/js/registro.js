@@ -13,18 +13,18 @@ $formularioAlumno.addEventListener("submit", async function(e){
             body: formData
         });
 
-        const reprenData =  await regRepre.text();
+        const reprenData =  await regRepre.json();
         console.log(reprenData);
 
-        // if(reprenData.success){
-        //      console.log(reprenData.message);
+        if(reprenData.success){
 
-        //     document.getElementById("resultado").innerText = reprenData.message;
+            alert(`${reprenData.message}`);
 
-        //     $formularioAlumno.reset();
-        // }else{
-        //     throw new Error("Error al registrar el representante.");
-        // }
+            $formularioAlumno.reset();
+        }else{
+            alert(`${reprenData.message}`);
+            throw new Error("Error al registrar el representante.");
+        }
         
     } catch (err) {
         console.error(err);

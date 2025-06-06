@@ -9,7 +9,6 @@
                         <option value="Convencional">Convencional</option>
                         <option value="No convencional">No convencional</option>
                 </select>
-
         </fieldset>
 
         <fieldset>

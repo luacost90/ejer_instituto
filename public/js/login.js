@@ -13,6 +13,8 @@ document.getElementById("btnLogin").addEventListener("click", async e =>{
     console.log(data);
     if(data.success){
         window.location.href = "public/dashboard.php";
+    }else{
+        alert(`${data.message}`);
     }
 
 });

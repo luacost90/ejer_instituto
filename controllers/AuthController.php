@@ -9,7 +9,7 @@
             $password = $_POST['password'] ?? null;
 
             if(!$username  || !$password){
-                echo json_encode(["success" => false, "message" => "Usuario o campos vacios"]);
+                echo json_encode(["success" => false, "message" => "Campos de usuario o contraseña vacios"]);
                 exit;
             }
 
