@@ -2,7 +2,7 @@
     <h2>📋 Registro de Alumno</h2>
 
     <fieldset>
-      <legend>🧑 Datos del estudiante</legend>
+      <legend>👩🧑 Datos del estudiante</legend>
       <div class="grid"> 
         <input type="text" name="cedula_alumno" id="cedula_alumno" placeholder="Cédula del alumno" pattern="^[VvEe]-?\d{6,8}$" title="Formato: V-12345678 o E-12345678">
         <input type="text" name="nombre_alumno" placeholder="Nombre del alumno" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,50}$" title="Solo letras, mínimo 2 y máximo 50 caracteres">
@@ -16,17 +16,7 @@
 
         <select name="grado_alumno">
           <option value="">Seleccione grado</option>
-          <optgroup label="Educación Inicial">
-            <option value="Maternal">Maternal</option>
-            <option value="I nivel">I nivel</option>
-            <option value="II nivel">II nivel</option>
-          </optgroup>
           <optgroup label="Educación Primaria (Básica)">
-            <option value="1° grado">1° grado</option>
-            <option value="2° grado">2° grado</option>
-            <option value="3° grado">3° grado</option>
-            <option value="4° grado">4° grado</option>
-            <option value="5° grado">5° grado</option>
             <option value="6° grado">6° grado</option>
           </optgroup>
           <optgroup label="Educación Media General">
@@ -35,14 +25,6 @@
             <option value="3° año">3° año</option>
             <option value="4° año">4° año</option>
             <option value="5° año">5° año</option>
-          </optgroup>
-          <optgroup label="Educación Media Técnica">
-            <option value="1° año técnico">1° año</option>
-            <option value="2° año técnico">2° año</option>
-            <option value="3° año técnico">3° año</option>
-            <option value="4° año técnico">4° año</option>
-            <option value="5° año técnico">5° año</option>
-            <option value="6° año técnico">6° año</option>
           </optgroup>
         </select>
 

@@ -24,6 +24,54 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 });
 
+let alumnos = [];
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const res = await fetch("../core/router.php?action=listar");
+    alumnos = await res.json();
+    renderAlumnos(alumnos);
+});
+
+function renderAlumnos(lista) {
+    const tbody = document.querySelector("#tablaAlumnos tbody");
+    console.log(alumnos)
+    tbody.innerHTML = "";
+    lista.forEach(alumno => {
+        const row = `  
+            <tr>
+                <td>${alumno.id_estudiante}</td>
+                <td>${alumno.nombre}</td>
+                <td>${alumno.cedula}</td>
+                <td>${alumno.nombre_representante}</td>
+                <td>
+                <button class="btn-detalles" data-id=${alumno.id_estudiante}><a href="dashboard.php?view=verDetalles&id=${alumno.id_estudiante}">Ver detalles</a></button>
+                <button class="btn-editar" data-id=${alumno.id_estudiante}>Editar</button>
+                <button class="btn-eliminar cancel-btn" data-id=${alumno.id_estudiante}>Eliminar</button>
+                </td>
+            </tr>
+        `;
+        tbody.innerHTML += row; 
+    });
+}
+
+const inputBusqueda = document.getElementById("busquedaAlumno");
+let teclaCount = 0;
+
+inputBusqueda.addEventListener("keyup", (e) => {
+    teclaCount++;
+    if (teclaCount >= 3) {
+        const valor = inputBusqueda.value.trim().toLowerCase();
+        const filtrados = alumnos.filter(alumno =>
+            alumno.cedula.toLowerCase().includes(valor)
+        );
+        renderAlumnos(filtrados);
+    }
+    if (inputBusqueda.value.length < 3) {
+        renderAlumnos(alumnos);
+        teclaCount = inputBusqueda.value.length;
+    }
+});
+
 
 document.addEventListener("click", e =>{
     if(e.target.classList.contains("btn-eliminar")){

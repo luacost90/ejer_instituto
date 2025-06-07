@@ -61,7 +61,7 @@
     </fieldset>
 
     <div class="button-group">
-        <button type="submit" class="btn-actualizar" data-id="<?=$id?>">Actualizar</button>
+        <button type="submit" class="btn-actualizar" data-id="<?=$id?>">📥 Actualizar</button>
     </div>
 
 </form>

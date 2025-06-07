@@ -49,7 +49,7 @@
         public function listarAlumnos(){
             try {
                 
-                $sql = "SELECT e.id_estudiante, e.nombre, r.nombre AS nombre_representante, r.cedula FROM estudiante e JOIN representante r ON e.fk_representante = r.id_representante";
+                $sql = "SELECT e.*, r.nombre AS nombre_representante, r.cedula AS cedula_representante FROM estudiante e JOIN representante r ON e.fk_representante = r.id_representante";
 
                 $statement = $this->conn->prepare($sql);
                 $statement->execute();

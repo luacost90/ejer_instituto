@@ -47,15 +47,11 @@
         </div>
         <div class='section'>
             <span class='label'>Dirección:</span>
-            <span class='content'>{$alumno['direccion']}</span>
+            <span class='content'>{$alumno['direccion_representante']}</span>
         </div>
         <div class='section'>
             <span class='label'>Teléfono:</span>
-            <span class='content'>{$alumno['telefono']}</span>
-        </div>
-        <div class='section'>
-            <span class='label'>Correo electrónico:</span>
-            <span class='content'>{$alumno['email']}</span>
+            <span class='content'>{$alumno['telefono_representante']}</span>
         </div>
         <div class='section'>
             <span class='label'>Grado:</span>
@@ -64,10 +60,6 @@
         <div class='section'>
             <span class='label'>Sección:</span>
             <span class='content'>{$alumno['seccion']}</span>
-        </div>
-        <div class='section'>
-            <span class='label'>Representante ID:</span>
-            <span class='content'>{$alumno['id_representante']}</span>
         </div>
         <div class='footer'>
             <p>Fecha de emisión: " . date('d/m/Y') . "</p>
